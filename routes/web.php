@@ -16,3 +16,5 @@ Route::get('/', function () {
 });
 
 Route::get('/contact', 'PagesController@contact');
+
+Route::get('/tasks', 'TasksController@index');
