@@ -9,6 +9,16 @@ class Task extends Model
     protected $fillable = [
     	'title',
     	'description',
-    	'termin'
+    	'termin',
+    	'category',
+    	'zalacznik',
+    	'user_id'
     ];
+
+    /**
+    * Zadanie ma autora
+    **/
+    public function user(){
+    	return $this->belongsTo('App\User');
+    }
 }

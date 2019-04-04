@@ -17,4 +17,14 @@ Route::get('/', function () {
 
 Route::get('/contact', 'PagesController@contact');
 
-Route::get('/tasks', 'TasksController@index');
+
+Route::resource('tasks', 'TasksController');
+Route::resource('tests', 'TestsController');
+Route::resource('labs', 'LabsController');
+
+
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('/');
+//Route::post('logout', 'Auth\LoginController@logout')->name('logout');

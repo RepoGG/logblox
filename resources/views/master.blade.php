@@ -39,25 +39,57 @@
                 </button>
 
                 <!-- Branding Image -->
-                <a class="navbar-brand" href="#">
-                    SK - Laravel
+                <a class="navbar-brand" href="www.zsqrowecki.pl">
+                    Zespół Szkół nr.1 w Zambrowie
                 </a>
             </div>
 
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
                 <!-- Left Side Of Navbar -->
-                <ul class="nav navbar-nav">
-                    <li><a href="">Start</a></li>
-                    
-                    <li><a href="/contact">Kontakt</a></li>
-                    
-                </ul>
+               <ul class="nav navbar-nav navbar-left">
+                   <li><a href="/">Strona Główna</a></li>
+                   <li><a href="/tasks">Zadania</a></li>
+                   <li><a href="/tests">Testy</a></li>
+                   <li><a href="/labs">Laboratorium</a></li>
+               </ul>
 
                 <!-- Right Side Of Navbar -->
                 <ul class="nav navbar-nav navbar-right">
                     <!-- Authentication Links -->
-                        <li><a href="login.html">Zaloguj</a></li>
-                        <li><a href="">Rejestracja</a></li>
+                         <!-- Right Side Of Navbar -->
+                    <ul class="navbar-nav ml-auto">
+                        <!-- Authentication Links -->
+                        @guest
+                            <li class="nav navbar-nav navbar-left">
+                                <a  href="{{ route('login') }}">{{ __('Login') }}</a>
+                            </li>
+                            @if (Route::has('register'))
+                                <li class="nav-item">
+                                    <a  href="{{ route('register') }}">{{ __(' Register') }}</a>
+                                </li>
+                            @endif
+                        @else
+                            <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                </a>
+
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
+                                </div>
+                            </li>
+                        @endguest
+                    </ul>
+
+
                 </ul>
             </div>
         </div>
@@ -79,7 +111,7 @@
     <!-- Footer -->
     <footer class="site-footer">
         <div class="container">
-            <p>&copy; Strefa Kursów 2016</p>
+            
         </div>
     </footer>
 
